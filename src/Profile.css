@@ -1,0 +1,26 @@
+.profile-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.profile-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 0px 12px rgba(0,0,0,0.15);
+  text-align: left;
+}
+
+.profile-card p {
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+.profile-not-logged {
+  text-align: center;
+  padding: 40px;
+  font-size: 20px;
+  opacity: 0.7;
+}

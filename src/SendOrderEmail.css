@@ -1,0 +1,48 @@
+.order-email-box {
+  margin-top: 20px;
+  padding: 20px;
+  width: 950px!important;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-family: Arial, sans-serif;
+}
+
+.order-email-box label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+/* FLEX ROW FOR INPUT + BUTTON */
+.order-email-row {
+  display: flex;
+  gap: 15px;          /* SPACE BETWEEN INPUT & BUTTON */
+  align-items: center;
+}
+
+.order-email-row input {
+  flex: 1;            /* input takes all available width */
+  padding: 10px;
+  border: 1px solid #888;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+  width: 550px!important;
+}
+/* 
+.order-email-row button {
+  background: #0d6efd;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  white-space: nowrap; /* prevents text from breaking } */
+
+.order-email-row button:hover {
+  background: #0a58ca;
+}

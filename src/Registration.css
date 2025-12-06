@@ -1,0 +1,151 @@
+.registration-container {
+  width: 750px; /* wider box for two inputs */
+  height: 680px;
+  margin: 30px auto;
+  padding: 25px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.15);
+}
+
+/* Heading */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+/* Flex rows for two inputs */
+.form-row {
+  display: flex;
+  gap: 20px; /* space between inputs */
+  margin-bottom: 18px;
+}
+
+.form-group {
+  flex: 1; /* each input takes equal width */
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="date"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Gender */
+.gender-options {
+  display: flex;
+  gap: 25px;
+  margin-top: 5px;
+}
+
+.gender-options input[type="radio"] {
+  accent-color: #000000;
+}
+
+.error-text {
+  color: #d8000c;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 12px;
+  background: #000000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background: #0066d3;
+}
+
+button:disabled {
+  background: #7faee9;
+  cursor: not-allowed;
+}
+
+/* Result messages */
+.result-message {
+  width: 550px;
+  margin: 15px auto;
+  text-align: center;
+}
+
+.success {
+  color: #0a9b00;
+  font-size: 18px;
+  padding: 10px 14px;
+  background: #d9ffd9;
+  border-radius: 6px;
+  border: 1px solid #80e680;
+}
+
+.error {
+  color: #d40000;
+  font-size: 18px;
+  padding: 10px 14px;
+  background: #ffe0e0;
+  border-radius: 6px;
+  border: 1px solid #ff8f8f;
+}
+.signin-text {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.signin-link {
+  color: #1e36d4;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.signin-link:hover {
+  text-decoration: underline;
+}
+/* Address textarea */
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  resize: vertical; /* user can adjust height */
+  min-height: 60px;
+  max-height: 150px;
+  font-family: inherit;
+}
+
+textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}

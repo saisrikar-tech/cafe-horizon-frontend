@@ -1,0 +1,26 @@
+.navbar {
+  background-color: #000000 !important; /* Force black */
+}
+
+.navbar .nav-link {
+  color: #ffffff !important; /* White links */
+}
+
+.navbar .nav-link.active {
+  color: #ffffff !important; /* Active link color */
+  border-bottom: solid #ffffff;
+}
+.navbar-toggler-btn{
+  color: #ffffff!important;
+}
+.profile-btn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  margin-left: 10px;
+  color: #ffffff!important;
+}
+
+.dropdown-item-text {
+  padding: 10px 15px;
+}

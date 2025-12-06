@@ -1,0 +1,432 @@
+/* --------------------------------------------- */
+/*                 CART CONTAINER                */
+/* --------------------------------------------- */
+.cart-container {
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  width: 1000px;
+  margin: 25px auto;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Title */
+.cart-title {
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 22px;
+  color: #333;
+}
+
+/* --------------------------------------------- */
+/*                   ITEM LIST                   */
+/* --------------------------------------------- */
+.cart-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #ffffff;
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  transition: background 0.2s;
+}
+
+.cart-item:hover {
+  background-color: #f3f3f3;
+}
+
+/* Item Image */
+.cart-item-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* --------------------------------------------- */
+/*               PRODUCT INFO                    */
+/* --------------------------------------------- */
+.cart-item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.item-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: #222;
+}
+
+.item-price {
+  font-size: 15px;
+  color: #333;
+}
+
+.item-qty {
+  font-size: 14px;
+  color: #555;
+}
+
+/* --------------------------------------------- */
+/*               ACTION BUTTONS                  */
+/* --------------------------------------------- */
+.cart-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.qty-number {
+  font-size: 15px;
+  font-weight: bold;
+  color: #000;
+  background-color: #ffffff;
+}
+
+.cart-btn {
+  background-color: #e6e6e6;
+  border: 1px solid #bbb;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.2s;
+  min-width: 36px;
+  text-align: center;
+}
+
+.cart-btn:hover {
+  background-color: #d2d2d2;
+}
+
+/* Delete Button */
+.delete-btn {
+  background-color: #e63946;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.delete-btn:hover {
+  background-color: #c01824;
+}
+
+/* --------------------------------------------- */
+/*             DISCOUNT SECTION                  */
+/* --------------------------------------------- */
+.discount-section {
+  margin-top: 20px;
+}
+
+.discount-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.discount-title {
+  font-size: 18px;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.discount-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.discount-btn {
+  background-color: #50b931;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s ease-in-out;
+  width: 150px!important;
+}
+
+.discount-btn:hover {
+  background-color: #3a8b26;
+}
+
+.discount-btn.remove {
+  background-color: #e63946;
+}
+
+.discount-btn.remove:hover {
+  background-color: #c01824;
+}
+
+.discount-btn:disabled {
+  background-color: #bfbfbf;
+  cursor: not-allowed;
+}
+
+/* --------------------------------------------- */
+/*             CLEAR CART BUTTON                 */
+/* --------------------------------------------- */
+.clear-cart-btn {
+  background-color: #e63946;
+  color: white;
+  border: none;
+  margin-left: auto ;
+  padding: 6.5px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  width: 150px;
+  height: 35px;
+  transition: 0.2s ease-in-out;
+}
+
+.clear-cart-btn:hover {
+  background-color: #b31b28;
+}
+
+/* --------------------------------------------- */
+/*            PRICE DETAILS SECTION              */
+/* --------------------------------------------- */
+.price-details {
+  margin-top: 25px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+}
+
+.price-title {
+  font-size: 22px;
+  margin-bottom: 12px;
+  color: #333;
+  text-align: center;
+}
+
+.price-details p {
+  font-size: 16px;
+  padding: 8px 0;
+  border-bottom: 1px dashed #ccc;
+  display: flex;
+  justify-content: space-between;
+}
+
+.final-pay {
+  border-bottom: none;
+  font-weight: bold;
+  color: #23571d;
+  font-size: 18px;
+}
+
+/* --------------------------------------------- */
+/*                RESPONSIVE UI                  */
+/* --------------------------------------------- */
+@media (max-width: 600px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cart-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .discount-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .discount-buttons {
+    flex-wrap: wrap;
+  }
+}
+
+/* --------------------------------------------- */
+/*             COUPON SECTION (UPDATED)          */
+/* --------------------------------------------- */
+.coupon-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.coupon-container input {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 220px; /* Smaller */
+}
+
+.coupon-container button {
+  padding: 5px 10px; /* smaller */
+  background-color: #50b931;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px; /* smaller text */
+  height: 32px; /* small fixed height */
+  transition: 0.2s;
+}
+
+.coupon-container button:hover {
+  background-color: #3a8b26;
+}
+
+.coupon-message {
+  margin-top: 8px;
+  color: #e63946;
+  font-weight: bold;
+}
+
+/* --------------------------------------------- */
+/*                PAYMENT SECTION                */
+/* --------------------------------------------- */
+.upi-section{
+  text-align: center;
+}
+.payment-container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+  
+}
+
+
+.qr-box {
+  margin-top: 20px;
+  background: #f8f8f8;
+  padding: 25px;
+  border-radius: 12px;
+  border: 2px dashed #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qr-img {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+}
+
+.payment-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.upi-id {
+  margin-top: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #000000;
+  border: 1px solid #000000;
+  padding: 6px 14px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+}
+
+.pay-btn {
+  margin: 20px;
+  background-color: #000000;
+  color: white;
+  padding: 10px 26px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+  width: 300px;
+  height: 50px;
+}
+
+.pay-btn:hover {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border: solid #000;
+}
+/* Wrapper container */
+.coupon-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+/* Label */
+.coupon-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+}
+
+/* Input field */
+.coupon-input {
+  padding: 6px 10px;
+  border: 1px solid #bfbfbf;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s;
+  width: 200px!important;
+  height: 40px;
+}
+
+.coupon-input:focus {
+  border-color: #50b931;
+}
+
+/* Smaller green button */
+.coupon-btn {
+  background-color: #000000!important;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s ease-in-out;
+  height: 40px!important;
+  width:200px;
+}
+
+.coupon-btn:hover {
+  background-color: #3a8b26;
+}

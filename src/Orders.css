@@ -1,0 +1,109 @@
+/* Container for all orders */
+.orders-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #ffffff;
+}
+
+.orders-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Orders list as a grid: 3 cards per row */
+.orders-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 3 cards per row */
+  gap: 20px; /* spacing between cards */
+}
+
+/* Each order card */
+.order-item {
+  background: #f8f8f8;
+  padding: 16px;
+  border-radius: 10px;
+  border-left: 4px solid #000000;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.order-item p {
+  margin: 5px 0;
+  font-size: 15px;
+}
+
+/* Structured item list inside each order card */
+.order-items-list {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr; /* name | quantity | price */
+  gap: 10px;
+  padding-left: 0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.order-items-list li {
+  display: contents; /* allow grid children to align properly */
+  font-weight: normal; /* normal font for items */
+}
+
+/* Item columns */
+.item-name {
+  grid-column: 1 / 2;
+}
+
+.item-quantity {
+  grid-column: 2 / 3;
+  text-align: center;
+}
+
+.item-price {
+  grid-column: 3 / 4;
+  text-align: right;
+}
+
+/* Header row styling */
+.order-items-header {
+  font-weight: bold; /* header bold */
+  background-color: #f0f0f0;
+  padding: 8px 0;
+}
+
+/* Toggle button styling */
+.toggle-btn {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 16px;
+  font-size: 16px;
+  background: #000000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.toggle-btn:hover {
+  background: #ffffff;
+  color: #000000;
+  border: #dcd1c6 solid;
+}
+
+/* Responsive: 2 cards per row on tablet, 1 card per row on mobile */
+@media (max-width: 992px) {
+  .orders-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .orders-list {
+    grid-template-columns: 1fr;
+  }
+}
+.order-items-list li span {
+  font-weight: normal !important;
+}

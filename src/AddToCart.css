@@ -1,0 +1,75 @@
+/* Container alignment */
+.add-to-cart-container {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Add To Cart button */
+.add-to-cart-btn {
+  padding: 10px 20px;
+  width: 140px;
+  height: 40px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #3d423d;
+  color: #ffffff;
+}
+
+/* Quantity box */
+.quantity-box {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 5px;
+  width: 140px;
+  height: 40px;
+  overflow: hidden;
+   border: #000000 1px solid;
+}
+
+/* - button */
+.qty-btn-dec,
+.qty-btn-inc {
+  width: 45px;
+  height: 40px;
+  /* background: #000; */
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+ 
+
+  /* Center the symbols perfectly */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* On hover both turn green */
+.qty-btn-dec:hover,
+.qty-btn-inc:hover {
+  background-color: #343734;
+  color: #fff;
+}
+
+/* Quantity number */
+.qty-number {
+  width: 50px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+
+}
