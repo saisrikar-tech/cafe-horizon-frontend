@@ -11,10 +11,9 @@ const menuSections = [
   { id: 6, title: "Cool Drinks / Mocktails", image: "mocktailsMenu.jpg", link: "/drinks" },
   { id: 7, title: "Burgers & Sandwiches", image: "burgersMenu.jpg", link: "/burgers" },
   { id: 8, title: "Pizza", image: "pizzaMenu.jpg", link: "/pizzas" },
-  { id: 11, title: "Pasta", image: "shakesMenu.jpg", link: "/pastas" },
-  // { id: 4, title: "Iced Beverages", image: "beveragesMenu.jpg", link: "/beverages" },
-  { id: 9, title: "Desserts", image: "dessertsMenu.jpg", link: "/desserts" },
-  { id: 10, title: "Shakes", image: "shakesMenu.jpg", link: "/shakes" }
+  { id: 9, title: "Pasta", image: "pastas_Menu.jpg", link: "/pastas" },
+  { id: 10, title: "Desserts", image: "dessertsMenu.jpg", link: "/desserts" },
+  { id: 11, title: "Shakes", image: "shakesMenu.jpg", link: "/shakes" }
 ];
   return (
     <div className="menu-container">

@@ -36,7 +36,7 @@ useEffect(() => {
 }, [applied, discount]);
 
   // ============== PRICE CALCULATIONS ==============
-  const allCalculations = useMemo(() => {
+    const allCalculations = useMemo(() => {
     const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
     const discountAmount = (totalAmount * discountPercentage) / 100;
     const priceAfterDiscount = totalAmount - discountAmount;

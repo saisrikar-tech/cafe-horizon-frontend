@@ -12,7 +12,7 @@ function Shakes() {
   }, [dispatch]);
 
   const { shakeItems, loading, error } = useSelector(
-    (state) => state.shakes // Must match slice name in store.js
+    (state) => state.shakes                                  // Must match slice name in store.js
   );
 
   // Pagination Logic

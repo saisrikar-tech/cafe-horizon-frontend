@@ -15,7 +15,8 @@ export const sendOrderEmail = async (cartItems, user, orderData) => {
         name: item.name,
         units: item.quantity,
         price: item.price,
-        image_url: `${window.location.origin}/${item.image}`,
+        image_url: `https://cafe-horizon-frontend.vercel.app/images/${item.image}`
+
       })),
       totalamount: orderData.totalAmount,
       discount: orderData.discountPercentage,
@@ -30,15 +31,15 @@ export const sendOrderEmail = async (cartItems, user, orderData) => {
     };
 
     await emailjs.send(
-      "service_1l450n5",          // Your EmailJS service ID
-      "template_c1zqvt9",         // Your EmailJS template ID
+      "service_1l450n5",          //  EmailJS service ID
+      "template_c1zqvt9",         //  EmailJS template ID
       templateParams,
-      "1a_iXOffeeEUSIelH"         // Your EmailJS user/public key
+      "1a_iXOffeeEUSIelH"         //  EmailJS user/public key
     );
 
-    toast.success("✅ Order details sent to your email successfully!");
+    toast.success(" Order details sent to your email successfully!");
   } catch (error) {
-    toast.error(`❌ Failed to send order email: ${error.text || error.message}`);
+    toast.error(` Failed to send order email: ${error.text || error.message}`);
     throw error; // throw so order is not cleared if email fails
   }
 };

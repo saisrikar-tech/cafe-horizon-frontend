@@ -1,21 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ProductItems.css";
 import AddToCart from "./AddToCart";
+import { fetchBreakfast } from "./store/BreakfastSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function Breakfast() {
-  const breakfastItems = [
-    { id: 201, name: "Classic Omelette", price: 120, description: "Fluffy 3-egg omelette cooked with herbs and butter.", image: "omelette.jpg", isVeg: false },
-    { id: 202, name: "Veg Masala Sandwich", price: 90, description: "Toasted sandwich stuffed with spiced mashed potatoes and veggies.", image: "veg-masala-sandwich.jpg", isVeg: true },
-    { id: 203, name: "Grilled Cheese Toast", price: 110, description: "Golden grilled sandwich loaded with melted cheese.", image: "cheese-toast.jpg", isVeg: true },
-    { id: 204, name: "Aloo Paratha", price: 140, description: "Whole wheat paratha stuffed with spicy mashed potatoes.", image: "aloo-paratha.jpg", isVeg: true },
-    { id: 205, name: "Paneer Paratha", price: 160, description: "Soft paratha filled with crumbled paneer and mild spices.", image: "paneer-paratha.jpg", isVeg: true },
-    { id: 211, name: "Cornflakes with Milk", price: 60, description: "Classic breakfast bowl with chilled milk.", image: "cornflakes.jpg", isVeg: true },
-    { id: 212, name: "Pancakes with Maple Syrup", price: 170, description: "Soft fluffy pancakes served with sweet maple syrup.", image: "pancakes.jpg", isVeg: true },
-    { id: 213, name: "French Toast", price: 150, description: "Egg-coated bread slices fried until golden and served sweet.", image: "french-toast.jpg", isVeg: false },
-    { id: 214, name: "Scrambled Eggs", price: 110, description: "Soft creamy scrambled eggs cooked with butter and pepper.", image: "scrambled-eggs.jpg", isVeg: false },
-    { id: 215, name: "Banana Oats Bowl", price: 130, description: "Warm oats topped with banana slices and honey.", image: "oats-bowl.jpg", isVeg: true }
-  ];
+const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(fetchBreakfast()); // Fetch data when component mounts
+  }, [dispatch]);
+
+  const { items, loading, error } = useSelector(
+    (state) => state.breakfast // Must match slice name in store.js
+  );
+  const breakfastItems = items;
+  
   const itemsPerPage = 8;
   const totalPages = Math.ceil(breakfastItems.length / itemsPerPage);
 
@@ -28,7 +28,14 @@ function Breakfast() {
     <div className="item-menu-container">
 
       <h1>Breakfast Menu</h1>
-
+      {/*//loading status with spinner add spinner css in ProductItems.css*/}
+        {loading && <div className="spinner">Loading...</div>}
+      {/*//error status*/}
+        {error && (
+          <div className="error-message">
+            Something went wrong
+          </div>
+        )}
       <div className="item-cards-container">
         {currentBreakfastItems.map((item) => (
           <div key={item.id} className="item-card">

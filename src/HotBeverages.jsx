@@ -1,20 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddToCart from "./AddToCart";
 import "./ProductItems.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchHotBeverages } from "./store/HotBeveragesSlice";
+import Loading from "./Loading";
 
 function HotBeverages() {
-  const beverages = [
-    { id: 201, name: "Espresso", price: 120, description: "Strong and bold single-shot coffee.", image: "espresso.jpg" },
-    { id: 202, name: "Americano", price: 140, description: "Rich black coffee with hot water.", image: "americano.jpg" },
-    { id: 203, name: "Latte", price: 180, description: "Smooth espresso with steamed milk.", image: "latte.jpg" },
-    { id: 204, name: "Cappuccino", price: 190, description: "Espresso with foamed milk.", image: "cappuccino.jpg" },
-    { id: 205, name: "Mocha", price: 210, description: "Coffee with chocolate and milk.", image: "mocha.jpg" },
-    { id: 206, name: "Hot Chocolate", price: 200, description: "Creamy chocolate drink.", image: "hot_chocolate.jpg" },
-    { id: 207, name: "Masala Chai", price: 80, description: "Indian spiced milk tea.", image: "masala_chai.jpg" },
-    { id: 208, name: "Green Tea", price: 100, description: "Detox herbal drink.", image: "green_tea.jpg" },
-    { id: 209, name: "Filter Coffee", price: 130, description: "South Indian strong decoction.", image: "filter_coffee.jpg" },
-    { id: 210, name: "Caramel Latte", price: 220, description: "Latte infused with caramel.", image: "caramel_latte.jpg" }
-  ];
+const dispatch = useDispatch();
+
+// Fetch hot beverages data from Redux store
+const { items, loading, error } = useSelector((state) => state.hotBeverages);
+
+useEffect(() => {
+  dispatch(fetchHotBeverages());
+}, [dispatch]);
+
+const beverages = items;
+  
+  // [
+  //   { id: 201, name: "Espresso", price: 120, description: "Strong and bold single-shot coffee.", image: "espresso.jpg" },
+  //   { id: 202, name: "Americano", price: 140, description: "Rich black coffee with hot water.", image: "americano.jpg" },
+  //   { id: 203, name: "Latte", price: 180, description: "Smooth espresso with steamed milk.", image: "latte.jpg" },
+  //   { id: 204, name: "Cappuccino", price: 190, description: "Espresso with foamed milk.", image: "cappuccino.jpg" },
+  //   { id: 205, name: "Mocha", price: 210, description: "Coffee with chocolate and milk.", image: "mocha.jpg" },
+  //   { id: 206, name: "Hot Chocolate", price: 200, description: "Creamy chocolate drink.", image: "hot_chocolate.jpg" },
+  //   { id: 207, name: "Masala Chai", price: 80, description: "Indian spiced milk tea.", image: "masala_chai.jpg" },
+  //   { id: 208, name: "Green Tea", price: 100, description: "Detox herbal drink.", image: "green_tea.jpg" },
+  //   { id: 209, name: "Filter Coffee", price: 130, description: "South Indian strong decoction.", image: "filter_coffee.jpg" },
+  //   { id: 210, name: "Caramel Latte", price: 220, description: "Latte infused with caramel.", image: "caramel_latte.jpg" }
+  // ];
 
   const itemsPerPage = 8;
   const totalPages = Math.ceil(beverages.length / itemsPerPage);
@@ -26,7 +40,12 @@ function HotBeverages() {
   return (
     <div className="item-menu-container">
       <h1>Hot Beverages Menu</h1>
-
+        {/*//loading status with spinner add spinner css in ProductItems.css*/}
+        {loading && <Loading />}
+      {/*//error status*/}
+        {error && (<Error />
+        )}
+        
       <div className="item-cards-container">
         {currentItems.map((item) => (
           <div key={item.id} className="item-card">
