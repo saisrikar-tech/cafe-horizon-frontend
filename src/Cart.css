@@ -188,6 +188,24 @@
   cursor: not-allowed;
 }
 
+/* Coupon Messages */
+.coupon-success{
+color: green;
+font-weight: 600;
+margin-bottom: 10px;
+}
+
+.coupon-remove-btn{
+background:red !important;
+color:white;
+margin-right:10px;
+}
+
+.coupon-reapply-btn{
+background:#444;
+color:white;
+}
+
 /* --------------------------------------------- */
 /*             CLEAR CART BUTTON                 */
 /* --------------------------------------------- */
@@ -429,4 +447,20 @@
 
 .coupon-btn:hover {
   background-color: #3a8b26;
+}
+
+
+
+/* --------------------------------------------- */
+/*                SPINNING ANIMATION               */
+/* --------------------------------------------- */
+
+.spin{
+animation: spin 1s linear infinite;
+margin-right:6px;
+}
+
+@keyframes spin{
+0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
 }

@@ -5,8 +5,7 @@ import { registerUser, clearRegisterState } from "./store/RegisterSlice";
 import { toast } from "react-toastify";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Registration.css";
-
-// ...imports remain the same
+import Swal from "sweetalert2"; 
 
 const Registration = () => {
   const dispatch = useDispatch();
@@ -18,23 +17,43 @@ const Registration = () => {
     formState: { errors },
     reset
   } = useForm();
+  const navigate = useNavigate();
 
+  // Clear registration state on component unmount  
   const password = watch("password", "");
 
   const onSubmit = (data) => {
-    dispatch(registerUser(data));
+      // Convert email to lowercase
+  const formattedData = {
+    ...data,
+    email: data.email.toLowerCase()
+  };
+    dispatch(registerUser(formattedData));
   };
 
   // Success toast
-  useEffect(() => {
-    if (success) {
-      toast.success(success);
-      reset();
-      const timer = setTimeout(() => dispatch(clearRegisterState()), 5000);
-      return () => clearTimeout(timer);
-    }
-  }, [success, dispatch, reset]);
+useEffect(() => {
+  if (success) {
+    Swal.fire({
+      title: "Success!",
+      text: "Registration successful!",
+      icon: "success",
+      confirmButtonText: "Go to Login",
+      showCancelButton: true,
+      cancelButtonText: "Go to Home",
+    }).then((result) => {
 
+      if (result.isConfirmed) {
+        navigate("/login");
+      } else {
+        navigate("/");
+      }
+
+      dispatch(clearRegisterState()); // correct reset
+
+    });
+  }
+}, [success, navigate, dispatch]);
   // Error toast
   useEffect(() => {
     if (error) {

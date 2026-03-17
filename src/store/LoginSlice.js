@@ -15,8 +15,8 @@ export const loginUser = createAsyncThunk(
       const { user, token, message } = response.data;
 
       // Save token & user
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
+      sessionStorage.setItem("token", token);
+      sessionStorage.setItem("user", JSON.stringify(user));
 
       return { user, token, message };
     } catch (err) {
@@ -28,8 +28,8 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-const userFromStorage = JSON.parse(localStorage.getItem("user"));
-const tokenFromStorage = localStorage.getItem("token");
+const userFromStorage = JSON.parse(sessionStorage.getItem("user"));
+const tokenFromStorage = sessionStorage.getItem("token");
 
 const loginSlice = createSlice({
   name: "userLogin",
@@ -46,8 +46,8 @@ const loginSlice = createSlice({
       state.token = null;
       state.isLoggedIn = false;
       state.error = null;
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
+      sessionStorage.removeItem("token");
+      sessionStorage.removeItem("user");
     },
     clearLoginError: (state) => {
       state.error = null;

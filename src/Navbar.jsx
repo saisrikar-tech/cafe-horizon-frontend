@@ -1,12 +1,17 @@
+import { useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHouse,
   faCartShopping,
-  faUser,
-  faRightToBracket,
   faRightFromBracket,
+  faRightToBracket,
+  faUser,
+  faBoxOpen,
+  faChevronDown,
+  faBars,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { logout } from "./store/LoginSlice";
 import "./Navbar.css";
@@ -14,140 +19,137 @@ import "./Navbar.css";
 function Navbar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const closeTimerRef = useRef(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const { user, isLoggedIn } = useSelector((state) => state.userLogin);
-
   const cartItems = useSelector((state) => state.cart.items);
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+
+
+const handleMouseEnter = () => {
+  clearTimeout(closeTimerRef.current);
+  setDropdownOpen(true);
+};
+
+const handleMouseLeave = () => {
+  closeTimerRef.current = setTimeout(() => setDropdownOpen(false), 200);
+};
 
   const handleLogout = () => {
     dispatch(logout());
     navigate("/login");
+    setMenuOpen(false);
   };
 
+  const initials = user?.name ? user.name.charAt(0).toUpperCase() : "?";
+
   return (
-    <>
-    <header>
-      <nav className="navbar navbar-expand-lg">
-        <div className="container">
+    <header className="ch-header">
+      <nav className="ch-nav">
+        <div className="ch-nav-inner">
 
           {/* Logo */}
-          <NavLink className="navbar-brand" to="/">
-            <img src="logo-cafe.jpg" alt="Cafe Logo" width="120" />
+          <NavLink className="ch-brand" to="/" onClick={() => setMenuOpen(false)}>
+            <img src="/logo-cafe.jpg" alt="Cafe Horizon" className="ch-logo" />
           </NavLink>
 
-          {/* Mobile Toggle Button */}
-          <button
-            className="navbar-toggler navbar-toggler-btn"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+          {/* Desktop Links — hidden on mobile */}
+          <div className="ch-links">
+            <NavLink to="/" className={({ isActive }) => `ch-link ${isActive ? "active" : ""}`}>
+              <FontAwesomeIcon icon={faHouse} /> Home
+            </NavLink>
 
-          {/* Collapsible Menu */}
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav ms-auto">
+            <NavLink to="/menu" className={({ isActive }) => `ch-link ${isActive ? "active" : ""}`}>
+              Menu
+            </NavLink>
 
-              {/* Home */}
-              <li className="nav-item">
-                <NavLink
-                  to="/"
-                  className={({ isActive }) =>
-                    `nav-link ${isActive ? "active" : ""}`
-                  }
-                >
-                  Home <FontAwesomeIcon icon={faHouse} />
-                </NavLink>
-              </li>
+            <NavLink to="/cart" className={({ isActive }) => `ch-link ch-cart ${isActive ? "active" : ""}`}>
+              <FontAwesomeIcon icon={faCartShopping} />
+              {cartCount > 0 && <span className="ch-badge">{cartCount}</span>}
+            </NavLink>
 
-              {/* Menu */}
-              <li className="nav-item">
-                <NavLink
-                  to="/menu"
-                  className={({ isActive }) =>
-                    `nav-link ${isActive ? "active" : ""}`
-                  }
-                >
-                  Menu
-                </NavLink>
-              </li>
+            <div className="ch-divider" />
 
-              {/* Cart */}
-              <li className="nav-item">
-                <NavLink
-                  to="/cart"
-                  className={({ isActive }) =>
-                    `nav-link ${isActive ? "active" : ""}`
-                  }
-                >
-                  <FontAwesomeIcon icon={faCartShopping} />
-                  {cartCount > 0 && (
-                    <span className="badge bg-white text-dark ms-1">
-                      {cartCount}
-                    </span>
-                  )}
-                </NavLink>
-              </li>
+            {/* Profile Dropdown */}
+            <div
+                className="ch-profile-wrap"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+              <button className="ch-profile-btn">
+                <div className="ch-avatar">{initials}</div>
+                <span>{isLoggedIn && user ? user.name?.split(" ")[0] : "Account"}</span>
+                <FontAwesomeIcon icon={faChevronDown} className="ch-chevron" />
+              </button>
 
-              {/* Profile Dropdown (Fully inside mobile collapse) */}
-              <li className="nav-item dropdown">
-                <NavLink
-                  className="nav-link dropdown-toggle"
-                  to="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                >
-                  <FontAwesomeIcon icon={faUser} size="lg" />
-                </NavLink>
-
-                <ul className="dropdown-menu dropdown-menu-end">
-
+              {dropdownOpen && (
+                <div className="ch-dropdown">
                   {isLoggedIn && user ? (
                     <>
-                      <li>
-                        <NavLink className="dropdown-item" to="/profile">
-                          My Profile
-                        </NavLink>
-                      </li>
-
-                      <li><hr className="dropdown-divider" /></li>
-
-                      <li>
-                        <NavLink className="dropdown-item" to="/orders">
-                          My Orders
-                        </NavLink>
-                      </li>
-
-                      <li>
-                        <button
-                          className="dropdown-item text-danger"
-                          onClick={handleLogout}
-                        >
-                          Logout <FontAwesomeIcon icon={faRightFromBracket} />
-                        </button>
-                      </li>
+                      <NavLink className="ch-drop-item" to="/profile" onClick={() => setDropdownOpen(false)}>
+                        <FontAwesomeIcon icon={faUser} /> My Profile
+                      </NavLink>
+                      <NavLink className="ch-drop-item" to="/orders" onClick={() => setDropdownOpen(false)}>
+                        <FontAwesomeIcon icon={faBoxOpen} /> My Orders
+                      </NavLink>
+                      <hr className="ch-drop-divider" />
+                      <button className="ch-drop-item ch-logout" onClick={handleLogout}>
+                        <FontAwesomeIcon icon={faRightFromBracket} /> Logout
+                      </button>
                     </>
                   ) : (
-                    <>
-                      <li>
-                        <NavLink className="dropdown-item" to="/login">
-                          Login <FontAwesomeIcon icon={faRightToBracket} />
-                        </NavLink>
-                      </li>
-                    </>
+                    <NavLink className="ch-drop-item" to="/login" onClick={() => setDropdownOpen(false)}>
+                      <FontAwesomeIcon icon={faRightToBracket} /> Login
+                    </NavLink>
                   )}
-                </ul>
-              </li>
-
-            </ul>
+                </div>
+              )}
+            </div>
           </div>
 
+          {/* Hamburger — mobile only */}
+          <button className="ch-hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+            <FontAwesomeIcon icon={menuOpen ? faXmark : faBars} />
+          </button>
+
         </div>
+
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className="ch-mobile-menu">
+            <NavLink to="/" className={({ isActive }) => `ch-mob-link ${isActive ? "active" : ""}`} onClick={() => setMenuOpen(false)}>
+              <FontAwesomeIcon icon={faHouse} /> Home
+            </NavLink>
+            <NavLink to="/menu" className={({ isActive }) => `ch-mob-link ${isActive ? "active" : ""}`} onClick={() => setMenuOpen(false)}>
+              Menu
+            </NavLink>
+            <NavLink to="/cart" className={({ isActive }) => `ch-mob-link ${isActive ? "active" : ""}`} onClick={() => setMenuOpen(false)}>
+              <FontAwesomeIcon icon={faCartShopping} /> Cart {cartCount > 0 && `(${cartCount})`}
+            </NavLink>
+            <hr className="ch-drop-divider" />
+            {isLoggedIn && user ? (
+              <>
+                <NavLink to="/profile" className="ch-mob-link" onClick={() => setMenuOpen(false)}>
+                  <FontAwesomeIcon icon={faUser} /> My Profile
+                </NavLink>
+                <NavLink to="/orders" className="ch-mob-link" onClick={() => setMenuOpen(false)}>
+                  <FontAwesomeIcon icon={faBoxOpen} /> My Orders
+                </NavLink>
+                <button className="ch-mob-link ch-logout" onClick={handleLogout}>
+                  <FontAwesomeIcon icon={faRightFromBracket} /> Logout
+                </button>
+              </>
+            ) : (
+              <NavLink to="/login" className="ch-mob-link" onClick={() => setMenuOpen(false)}>
+                <FontAwesomeIcon icon={faRightToBracket} /> Login
+              </NavLink>
+            )}
+          </div>
+        )}
       </nav>
     </header>
-    </>
   );
 }
 

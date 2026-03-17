@@ -11,7 +11,7 @@ function Login() {
   const { loading, error, isLoggedIn, user } = useSelector(
     (state) => state.userLogin
   );
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -20,12 +20,14 @@ function Login() {
     reset,
   } = useForm();
 
-  // Handle form submit
   const onSubmit = (data) => {
-    dispatch(loginUser(data));
+    const formattedData = {
+      ...data,
+      email: data.email.toLowerCase(),
+    };
+    dispatch(loginUser(formattedData));
   };
 
-  // Success toast
   useEffect(() => {
     if (isLoggedIn && user) {
       toast.success(`Welcome ${user.name} 👋`);
@@ -34,7 +36,6 @@ function Login() {
     }
   }, [isLoggedIn, user, reset]);
 
-  // Error toast
   useEffect(() => {
     if (error) {
       toast.error(error);
@@ -45,10 +46,15 @@ function Login() {
   return (
     <div className="login-container">
       <div className="login-box">
-        <h2 className="login-title">Login</h2>
+
+        {/* Logo */}
+        <div className="login-logo-wrap">
+          <img src="/logo-cafe-white.jpg" alt="Cafe Horizon" className="login-logo" />
+        </div>
+
+        <h2 className="login-title">Sign in to your account</h2>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          {/* Email */}
           <input
             type="email"
             placeholder="Enter your email"
@@ -57,7 +63,6 @@ function Login() {
           />
           <p className="error-text">{errors.email?.message}</p>
 
-          {/* Password */}
           <input
             type="password"
             placeholder="Enter your password"

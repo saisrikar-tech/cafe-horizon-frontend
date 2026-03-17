@@ -19,7 +19,7 @@ export const fetchShakeProducts = createAsyncThunk(
 const shakesSlice = createSlice({
   name: "shakes",
   initialState: {
-    shakeItems: [],
+    items: [],
     loading: false,
     error: null
   },
@@ -32,7 +32,7 @@ const shakesSlice = createSlice({
         state.loading = true;
       })
       .addCase(fetchShakeProducts.fulfilled, (state, action) => {
-        state.shakeItems = action.payload;
+        state.items = action.payload;
         state.loading = false;
       })
       .addCase(fetchShakeProducts.rejected, (state, action) => {

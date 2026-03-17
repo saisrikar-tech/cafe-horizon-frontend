@@ -1,26 +1,292 @@
-.navbar {
-  background-color: #000000 !important; /* Force black */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --ch-bg: #0a0a0a;
+  --ch-bg2: #141414;
+  --ch-border: #1e1e1e;
+  --ch-accent: #ffffff;
+  --ch-accent2: #ffffff;
+  --ch-text: #f0ece4;
+  --ch-muted: #7a7570;
 }
 
-.navbar .nav-link {
-  color: #ffffff !important; /* White links */
+/* ===== HEADER ===== */
+.ch-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--ch-bg);
+  border-bottom: 1px solid var(--ch-border);
 }
 
-.navbar .nav-link.active {
-  color: #ffffff !important; /* Active link color */
-  border-bottom: solid #ffffff;
+.ch-nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
-.navbar-toggler-btn{
-  color: #ffffff!important;
+
+.ch-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
 }
-.profile-btn {
-  background: transparent;
+
+/* ===== LOGO ===== */
+.ch-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.ch-logo {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ===== DESKTOP LINKS ===== */
+.ch-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.ch-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  color: var(--ch-muted);
+  text-decoration: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  border-radius: 8px;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.ch-link:hover {
+  color: var(--ch-text);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.ch-link.active {
+  color: var(--ch-accent);
+}
+
+.ch-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 14px;
+  right: 14px;
+  height: 2px;
+  background: var(--ch-accent);
+  border-radius: 2px 2px 0 0;
+}
+
+/* ===== CART ===== */
+.ch-cart {
+  position: relative;
+  padding: 8px 16px;
+}
+
+.ch-badge {
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  background: var(--ch-accent);
+  color: #000;
+  font-size: 10px;
+  font-weight: 700;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== DIVIDER ===== */
+.ch-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--ch-border);
+  margin: 0 8px;
+}
+
+/* ===== PROFILE ===== */
+.ch-profile-wrap {
+  position: relative;
+}
+
+.ch-profile-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(200, 150, 62, 0.08);
+  border: 1px solid rgba(200, 150, 62, 0.2);
+  border-radius: 8px;
+  color: var(--ch-text);
+  font-size: 0.875rem;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ch-profile-btn:hover {
+  background: rgba(200, 150, 62, 0.15);
+  border-color: rgba(200, 150, 62, 0.4);
+}
+
+.ch-avatar {
+  width: 26px;
+  height: 26px;
+  background: linear-gradient(135deg, var(--ch-accent), var(--ch-accent2));
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #000;
+}
+
+.ch-chevron {
+  font-size: 10px;
+  opacity: 0.6;
+}
+
+/* ===== DROPDOWN ===== */
+.ch-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: var(--ch-bg2);
+  border: 1px solid var(--ch-border);
+  border-radius: 12px;
+  padding: 8px;
+  min-width: 185px;
+  z-index: 200;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  animation: dropIn 0.15s ease;
+}
+
+@keyframes dropIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.ch-drop-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  padding: 9px 12px;
+  color: var(--ch-text);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-family: 'DM Sans', sans-serif;
+  border-radius: 8px;
   border: none;
-  font-size: 18px;
-  margin-left: 10px;
-  color: #ffffff!important;
+  background: none;
+  cursor: pointer;
+  transition: background 0.15s;
 }
 
-.dropdown-item-text {
-  padding: 10px 15px;
+.ch-drop-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.ch-drop-divider {
+  border: none;
+  border-top: 1px solid var(--ch-border);
+  margin: 6px 0;
+}
+
+.ch-logout {
+  color: #e05555 !important;
+}
+
+/* ===== HAMBURGER — mobile only ===== */
+.ch-hamburger {
+  display: none; /* hidden on desktop */
+  background: none;
+  border: 1px solid var(--ch-border);
+  border-radius: 8px;
+  color: var(--ch-text);
+  padding: 8px 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ch-hamburger:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ===== MOBILE MENU ===== */
+.ch-mobile-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 1rem 0;
+  border-top: 1px solid var(--ch-border);
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.ch-mob-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 8px;
+  color: var(--ch-muted);
+  text-decoration: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.15s;
+}
+
+.ch-mob-link:hover,
+.ch-mob-link.active {
+  color: var(--ch-text);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.ch-mob-link.active {
+  color: var(--ch-accent);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  /* Hide desktop links, show hamburger */
+  .ch-links {
+    display: none;
+  }
+
+  .ch-hamburger {
+    display: block;
+  }
+
+  .ch-nav {
+    padding: 0 1rem;
+  }
+
+  .ch-logo {
+    height: 44px;
+  }
 }
