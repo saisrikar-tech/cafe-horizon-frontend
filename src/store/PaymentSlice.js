@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import api from "./Api";
 
 
 // ================= CREATE ORDER =================
@@ -7,25 +8,12 @@ export const createPaymentOrder = createAsyncThunk(
   async (amount, { rejectWithValue }) => {
     try {
 
-      const response = await fetch(
-        "http://localhost:5000/api/v1/products/create-payment",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ amount }),
-        }
-      );
-
-      const data = await response.json();
-
-      return data;
+      const response = await api.post("/create-payment", { amount });
+      return response.data;
 
     } catch (error) {
 
-      return rejectWithValue(error.message);
-
+      return rejectWithValue(error.response?.data || "Payment failed");
     }
   }
 );
@@ -37,25 +25,11 @@ export const verifyPayment = createAsyncThunk(
   async (paymentData, { rejectWithValue }) => {
     try {
 
-      const response = await fetch(
-        "http://localhost:5000/api/v1/products/verify-payment",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(paymentData),
-        }
-      );
-
-      const data = await response.json();
-
-      return data;
-
+      const response = await api.post("/verify-payment", paymentData);
+      return response.data;
     } catch (error) {
-
-      return rejectWithValue(error.message);
-
+      return rejectWithValue(error.response?.data || "Verification failed");
+    
     }
   }
 );
