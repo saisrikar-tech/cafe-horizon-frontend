@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import Coupon from "./Coupon";
 import { createPaymentOrder, verifyPayment } from "./store/PaymentSlice";
-import ConfirmDialog from "./Confirmdialog";
+import ConfirmDialog from "./ConfirmDialog";
 
 function Cart() {
   const [placingOrder, setPlacingOrder] = useState(false);
