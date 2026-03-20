@@ -1,5 +1,5 @@
 import MenuPage from "./MenuPage";
-import { fetchPizzas } from "./store/PizzasSlice";
+import { clearError, fetchPizzas } from "./store/PizzasSlice";
 
 function Pizzas() {
 
@@ -8,6 +8,7 @@ function Pizzas() {
       title="Pizza Menu"
       fetchAction={fetchPizzas}
       selector={(state) => state.pizzas}
+      clearErrorAction={clearError}
     />
   );
 

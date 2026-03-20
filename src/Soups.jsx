@@ -1,5 +1,5 @@
 import MenuPage from "./MenuPage";
-import { fetchSoups } from "./store/SoupsSlice";
+import { clearError, fetchSoups } from "./store/SoupsSlice";
 
 function Soups() {
 
@@ -8,6 +8,7 @@ function Soups() {
       title="Soups Menu"
       fetchAction={fetchSoups}
       selector={(state) => state.soups}
+      clearErrorAction={clearError}
     />
   );
 

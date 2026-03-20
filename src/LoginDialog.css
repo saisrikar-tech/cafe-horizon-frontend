@@ -1,0 +1,200 @@
+/* --------------------------------------------- */
+/*           OVERLAY & BACKDROP                  */
+/* --------------------------------------------- */
+.ld-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ld-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(3px);
+}
+
+/* --------------------------------------------- */
+/*           WRAPPER & PANEL                     */
+/* --------------------------------------------- */
+.ld-wrapper {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.ld-panel {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem 1.75rem;
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
+  animation: ld-pop 0.22s ease;
+  position: relative;
+}
+
+@keyframes ld-pop {
+  from { transform: scale(0.92); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+
+/* --------------------------------------------- */
+/*           CLOSE BUTTON                        */
+/* --------------------------------------------- */
+.ld-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: #f0f0f0;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #555;
+  transition: background 0.2s;
+}
+
+.ld-close:hover {
+  background: #e0e0e0;
+}
+
+/* --------------------------------------------- */
+/*           LOGO                                */
+/* --------------------------------------------- */
+.ld-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.ld-logo img {
+  width: 140px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* --------------------------------------------- */
+/*           TITLE                               */
+/* --------------------------------------------- */
+.ld-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111;
+  margin: 0 0 1.25rem;
+}
+
+/* --------------------------------------------- */
+/*           FORM                                */
+/* --------------------------------------------- */
+.ld-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+}
+
+.ld-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ld-field label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+}
+
+.ld-field input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ld-field input:focus {
+  border-color: #000;
+}
+
+.ld-error {
+  font-size: 12px;
+  color: #e63946;
+  margin: 0;
+}
+
+/* --------------------------------------------- */
+/*           SUBMIT BUTTON                       */
+/* --------------------------------------------- */
+.ld-btn {
+  width: 100%;
+  padding: 11px;
+  background: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 4px;
+}
+
+.ld-btn:hover {
+  background: #222;
+}
+
+.ld-btn:disabled {
+  background: #888;
+  cursor: not-allowed;
+}
+
+/* --------------------------------------------- */
+/*           REDIRECT TEXT                       */
+/* --------------------------------------------- */
+.ld-redirect {
+  margin-top: 16px;
+  font-size: 14px;
+  color: #555;
+}
+
+.ld-link {
+  color: #000;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.ld-link:hover {
+  color: #333;
+}
+
+/* --------------------------------------------- */
+/*           RESPONSIVE                          */
+/* --------------------------------------------- */
+@media (max-width: 480px) {
+  .ld-panel {
+    padding: 1.5rem 1.25rem;
+    border-radius: 12px;
+  }
+
+  .ld-logo img {
+    width: 120px;
+  }
+}

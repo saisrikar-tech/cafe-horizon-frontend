@@ -10,7 +10,6 @@ export const fetchShakeProducts = createAsyncThunk(
       const response = await api.get("/shakes");
       return response.data;
     } catch (error) {
-      console.log(error.response?.data)
       return rejectWithValue(error.response?.data || "Failed to fetch shakes");
     }
   }
@@ -26,10 +25,16 @@ const shakesSlice = createSlice({
   reducers: {
     // Optional: You can add local reducers here if needed later
   },
+    reducers: {
+    clearError: (state) => {
+      state.error = null; 
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchShakeProducts.pending, (state) => {
         state.loading = true;
+        state.error = null; // ← clears error when retry starts 
       })
       .addCase(fetchShakeProducts.fulfilled, (state, action) => {
         state.items = action.payload;
@@ -42,4 +47,5 @@ const shakesSlice = createSlice({
   }
 });
 
+export const { clearError } = shakesSlice.actions; // ← export it
 export default shakesSlice.reducer;

@@ -1,6 +1,6 @@
 .registration-container {
   width: 750px; /* wider box for two inputs */
-  height: 680px;
+  height: auto; /* allow natural scroll if needed */
   margin: 30px auto;
   padding: 25px;
   background: #fff;
@@ -148,4 +148,86 @@ textarea {
 textarea:focus {
   border-color: #007bff;
   outline: none;
+}
+/* ===== ADD THESE TO THE BOTTOM OF YOUR Registration.css ===== */
+
+/* Logo */
+.registration-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.registration-logo img {
+  width: 180px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ===== RESPONSIVE — Tablet (≤768px) ===== */
+@media (max-width: 768px) {
+  .registration-container {
+    width: 95%;
+    height: auto;           /* allow natural scroll on small screens */
+    margin: 20px auto;
+    padding: 20px 16px;
+  }
+
+  /* Stack two-column rows into single column */
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .registration-logo img {
+    width: 140px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+}
+
+/* ===== RESPONSIVE — Mobile (≤480px) ===== */
+@media (max-width: 480px) {
+  .registration-container {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    padding: 16px 12px;
+    box-shadow: none;
+  }
+
+  .registration-logo img {
+    width: 120px;
+  }
+
+  h2 {
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"],
+  input[type="date"],
+  textarea {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .gender-options {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  button {
+    font-size: 15px;
+    padding: 11px;
+  }
+
+  .signin-text {
+    font-size: 14px;
+  }
 }

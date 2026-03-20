@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { loginUser, clearLoginError } from "./store/LoginSlice";
-import { toast } from "react-toastify";
+import { toast } from "sonner"; // ← swapped from react-toastify
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Login.css";
 
@@ -30,7 +30,7 @@ function Login() {
 
   useEffect(() => {
     if (isLoggedIn && user) {
-      toast.success(`Welcome ${user.name} 👋`);
+      toast.success(`Welcome ${user.name}!`);
       reset();
       navigate("/");
     }
@@ -47,7 +47,6 @@ function Login() {
     <div className="login-container">
       <div className="login-box">
 
-        {/* Logo */}
         <div className="login-logo-wrap">
           <img src="/logo-cafe-white.jpg" alt="Cafe Horizon" className="login-logo" />
         </div>

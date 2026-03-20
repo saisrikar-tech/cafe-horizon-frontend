@@ -1,5 +1,5 @@
 import emailjs from "emailjs-com";
-import { toast } from "react-toastify";
+import { toast } from "sonner"; 
 
 /**
  * Sends order email using EmailJS

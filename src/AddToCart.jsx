@@ -1,20 +1,17 @@
-import React from 'react';
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart, incrementQuantity, decrementQuantity } from "./store/CartSlice";
+import { openLoginDialog } from "./store/LoginSlice"; // ← from LoginSlice directly
 import "./AddToCart.css";
-import { toast } from "react-toastify";
-import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 function AddToCart({ item }) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const cartItem = useSelector((state) =>
     state.cart.items.find((cartProduct) => cartProduct.id === item.id)
   );
 
-  // Check if user is logged in
   const isUserLoggedIn = () => {
     const user = JSON.parse(sessionStorage.getItem("user"));
     return user && user.name;
@@ -22,53 +19,29 @@ function AddToCart({ item }) {
 
   const handleAddToCart = () => {
     if (!isUserLoggedIn()) {
-      Swal.fire({
-        icon: "warning",
-        title: "Login Required",
-        text: "Please login to add items to cart",
-        confirmButtonText: "Go to Login",
-      }).then(() => {
-        navigate("/login");
-      });
+      dispatch(openLoginDialog());
       return;
     }
-
     dispatch(addToCart(item));
     toast.success(`${item.name} added to cart!`);
   };
 
   const handleIncrement = () => {
     if (!isUserLoggedIn()) {
-      Swal.fire({
-        icon: "warning",
-        title: "Login Required",
-        text: "Please login to update cart",
-        confirmButtonText: "Go to Login",
-      }).then(() => {
-        navigate("/login");
-      });
+      dispatch(openLoginDialog());
       return;
     }
-
     dispatch(incrementQuantity(item));
-    toast.success(`➕ Added one more ${item.name}`);
+    toast.success(`Added one more ${item.name}`);
   };
 
   const handleDecrement = () => {
     if (!isUserLoggedIn()) {
-      Swal.fire({
-        icon: "warning",
-        title: "Login Required",
-        text: "Please login to update cart",
-        confirmButtonText: "Go to Login",
-      }).then(() => {
-        navigate("/login");
-      });
+      dispatch(openLoginDialog());
       return;
     }
-
     dispatch(decrementQuantity(item));
-    toast.info(`➖ Reduced ${item.name} quantity`);
+    toast.info(`Reduced ${item.name} quantity`);
   };
 
   return (

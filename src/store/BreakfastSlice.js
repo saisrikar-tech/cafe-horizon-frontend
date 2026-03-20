@@ -17,14 +17,26 @@ const breakfastSlice = createSlice({
   name: "breakfast",
   initialState: { items: [], loading: false, error: null },
   reducers: {},
+    reducers: {
+    clearError: (state) => {
+      state.error = null; 
+    },
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchBreakfast.pending, (state) => { state.loading = true; })
-      .addCase(fetchBreakfast.fulfilled, (state, action) => { state.items = action.payload; state.loading = false;
-        console.log(action.payload);
-       })
-      .addCase(fetchBreakfast.rejected, (state, action) => { state.error = action.payload || "Something went wrong"; state.loading = false; });
+      .addCase(fetchBreakfast.pending, (state) => {
+        state.loading = true;
+        state.error = null; // ← clears error when retry starts
+      })
+      .addCase(fetchBreakfast.fulfilled, (state, action) => {
+        state.items = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchBreakfast.rejected, (state, action) => {
+        state.error = action.payload;
+        state.loading = false;
+      });
   }
 });
-
+export const { clearError } = breakfastSlice.actions;
 export default breakfastSlice.reducer;

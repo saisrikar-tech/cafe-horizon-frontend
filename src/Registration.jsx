@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser, clearRegisterState } from "./store/RegisterSlice";
-import { toast } from "react-toastify";
+import { toast } from "sonner"; // ← swapped from react-toastify
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Registration.css";
-import Swal from "sweetalert2"; 
+import Swal from "sweetalert2";
 
 const Registration = () => {
   const dispatch = useDispatch();
@@ -15,46 +15,40 @@ const Registration = () => {
     handleSubmit,
     watch,
     formState: { errors },
-    reset
+    reset,
   } = useForm();
   const navigate = useNavigate();
 
-  // Clear registration state on component unmount  
   const password = watch("password", "");
 
   const onSubmit = (data) => {
-      // Convert email to lowercase
-  const formattedData = {
-    ...data,
-    email: data.email.toLowerCase()
-  };
+    const formattedData = {
+      ...data,
+      email: data.email.toLowerCase(),
+    };
     dispatch(registerUser(formattedData));
   };
 
-  // Success toast
-useEffect(() => {
-  if (success) {
-    Swal.fire({
-      title: "Success!",
-      text: "Registration successful!",
-      icon: "success",
-      confirmButtonText: "Go to Login",
-      showCancelButton: true,
-      cancelButtonText: "Go to Home",
-    }).then((result) => {
+  useEffect(() => {
+    if (success) {
+      Swal.fire({
+        title: "Success!",
+        text: "Registration successful!",
+        icon: "success",
+        confirmButtonText: "Go to Login",
+        showCancelButton: true,
+        cancelButtonText: "Go to Home",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        } else {
+          navigate("/");
+        }
+        dispatch(clearRegisterState());
+      });
+    }
+  }, [success, navigate, dispatch]);
 
-      if (result.isConfirmed) {
-        navigate("/login");
-      } else {
-        navigate("/");
-      }
-
-      dispatch(clearRegisterState()); // correct reset
-
-    });
-  }
-}, [success, navigate, dispatch]);
-  // Error toast
   useEffect(() => {
     if (error) {
       toast.error(error);
@@ -63,6 +57,11 @@ useEffect(() => {
 
   return (
     <div className="registration-container">
+
+      <div className="registration-logo">
+        <img src="/logo-cafe-white.jpg" alt="Cafe Horizon Logo" />
+      </div>
+
       <h2>Registration Sign Up:</h2>
 
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -74,7 +73,7 @@ useEffect(() => {
               type="text"
               {...register("name", {
                 required: "Name is required",
-                minLength: { value: 3, message: "Minimum 3 characters" }
+                minLength: { value: 3, message: "Minimum 3 characters" },
               })}
             />
             <p className="error-text">{errors.name?.message}</p>
@@ -88,8 +87,8 @@ useEffect(() => {
                 required: "Email is required",
                 pattern: {
                   value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                  message: "Invalid email"
-                }
+                  message: "Invalid email",
+                },
               })}
             />
             <p className="error-text">{errors.email?.message}</p>
@@ -106,8 +105,8 @@ useEffect(() => {
                 required: "Phone is required",
                 pattern: {
                   value: /^[0-9]{10}$/,
-                  message: "Enter 10 digit phone number"
-                }
+                  message: "Enter 10 digit phone number",
+                },
               })}
             />
             <p className="error-text">{errors.phone?.message}</p>
@@ -128,13 +127,28 @@ useEffect(() => {
           <label>Gender</label>
           <div className="gender-options">
             <label>
-              <input type="radio" value="Male" {...register("gender", { required: "Select gender" })} /> Male
+              <input
+                type="radio"
+                value="Male"
+                {...register("gender", { required: "Select gender" })}
+              />{" "}
+              Male
             </label>
             <label>
-              <input type="radio" value="Female" {...register("gender", { required: "Select gender" })} /> Female
+              <input
+                type="radio"
+                value="Female"
+                {...register("gender", { required: "Select gender" })}
+              />{" "}
+              Female
             </label>
             <label>
-              <input type="radio" value="Other" {...register("gender", { required: "Select gender" })} /> Other
+              <input
+                type="radio"
+                value="Other"
+                {...register("gender", { required: "Select gender" })}
+              />{" "}
+              Other
             </label>
           </div>
           <p className="error-text">{errors.gender?.message}</p>
@@ -148,7 +162,7 @@ useEffect(() => {
               type="password"
               {...register("password", {
                 required: "Password is required",
-                minLength: { value: 6, message: "Minimum 6 characters" }
+                minLength: { value: 6, message: "Minimum 6 characters" },
               })}
             />
             <p className="error-text">{errors.password?.message}</p>
@@ -161,13 +175,14 @@ useEffect(() => {
               {...register("confirmPassword", {
                 required: "Confirm password",
                 validate: (value) =>
-                  value === password || "Passwords do not match"
+                  value === password || "Passwords do not match",
               })}
             />
             <p className="error-text">{errors.confirmPassword?.message}</p>
           </div>
         </div>
-         {/* Address */}
+
+        {/* Address */}
         <div className="form-group">
           <label>Address</label>
           <textarea
@@ -175,7 +190,7 @@ useEffect(() => {
             {...register("address", {
               required: "Address is required",
               minLength: { value: 10, message: "Minimum 10 characters" },
-              maxLength: { value: 200, message: "Maximum 200 characters" }
+              maxLength: { value: 200, message: "Maximum 200 characters" },
             })}
           />
           <p className="error-text">{errors.address?.message}</p>

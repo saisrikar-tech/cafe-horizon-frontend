@@ -1,0 +1,149 @@
+/* --------------------------------------------- */
+/*           OVERLAY & BACKDROP                  */
+/* --------------------------------------------- */
+.cd-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cd-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+/* --------------------------------------------- */
+/*           WRAPPER & PANEL                     */
+/* --------------------------------------------- */
+.cd-wrapper {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.cd-panel {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  animation: cd-pop 0.2s ease;
+}
+
+@keyframes cd-pop {
+  from { transform: scale(0.92); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+
+/* --------------------------------------------- */
+/*           ICON                                */
+/* --------------------------------------------- */
+.cd-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cd-icon-success { background: #d9ffd9; color: #2a9d4e; }
+.cd-icon-danger  { background: #ffe0e0; color: #e63946; }
+.cd-icon-warning { background: #fff3cd; color: #f4a261; }
+.cd-icon-default { background: #e8f0fe; color: #457b9d; }
+
+/* --------------------------------------------- */
+/*           TITLE & MESSAGE                     */
+/* --------------------------------------------- */
+.cd-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111;
+  margin: 0 0 8px;
+}
+
+.cd-message {
+  font-size: 14px;
+  color: #555;
+  margin: 0 0 1.5rem;
+  line-height: 1.6;
+}
+
+/* --------------------------------------------- */
+/*           BUTTONS                             */
+/* --------------------------------------------- */
+.cd-btns {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.cd-btn-cancel {
+  background: #f0f0f0;
+  color: #333;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  min-width: 100px;
+}
+
+.cd-btn-cancel:hover {
+  background: #e0e0e0;
+}
+
+.cd-btn-confirm {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+  transition: opacity 0.2s;
+  min-width: 100px;
+}
+
+.cd-btn-confirm:hover {
+  opacity: 0.88;
+}
+
+/* Confirm button colors per type */
+.cd-btn-success { background: #2a9d4e; }
+.cd-btn-danger  { background: #e63946; }
+.cd-btn-warning { background: #f4a261; }
+.cd-btn-default { background: #000000; }
+
+/* --------------------------------------------- */
+/*           RESPONSIVE                          */
+/* --------------------------------------------- */
+@media (max-width: 480px) {
+  .cd-panel {
+    padding: 1.5rem 1rem;
+    border-radius: 12px;
+  }
+
+  .cd-btns {
+    flex-direction: column;
+  }
+
+  .cd-btn-cancel,
+  .cd-btn-confirm {
+    width: 100%;
+  }
+}

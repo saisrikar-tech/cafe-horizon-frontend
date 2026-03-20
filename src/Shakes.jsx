@@ -1,5 +1,5 @@
 import MenuPage from "./MenuPage";
-import { fetchShakeProducts } from "./store/ShakesSlice";
+import { clearError, fetchShakeProducts } from "./store/ShakesSlice";
 
 function Shakes() {
 
@@ -8,6 +8,7 @@ function Shakes() {
       title="Thick Shakes"
       fetchAction={fetchShakeProducts}
       selector={(state) => state.shakes}
+      clearErrorAction={clearError}
     />
   );
 

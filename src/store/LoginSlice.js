@@ -1,4 +1,3 @@
-// src/store/LoginSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import api from "./Api";
 
@@ -7,20 +6,15 @@ export const loginUser = createAsyncThunk(
   "userLogin/loginUser",
   async (formData, thunkAPI) => {
     try {
-      console.log("Sending to API:", formData);
-
       const response = await api.post("/login", formData);
-      console.log("API Response:", response.data);
 
       const { user, token, message } = response.data;
 
-      // Save token & user
       sessionStorage.setItem("token", token);
       sessionStorage.setItem("user", JSON.stringify(user));
 
       return { user, token, message };
     } catch (err) {
-      console.error("Login Error:", err.response?.data);
       return thunkAPI.rejectWithValue(
         err.response?.data?.message || "Login failed"
       );
@@ -39,6 +33,7 @@ const loginSlice = createSlice({
     loading: false,
     error: null,
     isLoggedIn: !!tokenFromStorage,
+    isLoginDialogOpen: false, // ← dialog state
   },
   reducers: {
     logout: (state) => {
@@ -50,6 +45,13 @@ const loginSlice = createSlice({
       sessionStorage.removeItem("user");
     },
     clearLoginError: (state) => {
+      state.error = null;
+    },
+    openLoginDialog: (state) => {        // ← opens dialog
+      state.isLoginDialogOpen = true;
+    },
+    closeLoginDialog: (state) => {       // ← closes dialog
+      state.isLoginDialogOpen = false;
       state.error = null;
     },
   },
@@ -64,6 +66,7 @@ const loginSlice = createSlice({
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
+        state.isLoginDialogOpen = false; // ← auto-close on login success
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
@@ -72,5 +75,6 @@ const loginSlice = createSlice({
   },
 });
 
-export const { logout, clearLoginError } = loginSlice.actions;
+// ← make sure all 4 are exported here
+export const { logout, clearLoginError, openLoginDialog, closeLoginDialog } = loginSlice.actions;
 export default loginSlice.reducer;

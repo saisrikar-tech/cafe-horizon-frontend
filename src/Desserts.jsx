@@ -1,5 +1,5 @@
 import MenuPage from "./MenuPage";
-import { fetchDesserts } from "./store/DessertsSlice";
+import { clearError, fetchDesserts } from "./store/DessertsSlice";
 
 function Desserts() {
 
@@ -8,6 +8,7 @@ function Desserts() {
       title="Desserts Menu"
       fetchAction={fetchDesserts}
       selector={(state) => state.desserts}
+      clearErrorAction={clearError}
     />
   );
 

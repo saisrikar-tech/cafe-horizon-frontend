@@ -1,127 +1,239 @@
-/* Container */
+/* --------------------------------------------- */
+/*              HOME CONTAINER                   */
+/* Cup is at ~65% from left, vertically centered */
+/* Left side is dark — perfect for text overlay  */
+/* --------------------------------------------- */
 .home-container {
   position: relative;
   width: 100%;
   height: 100vh;
+  height: 100svh; /* fixes mobile browser address bar overlap */
+  min-height: 480px;
   overflow: hidden;
+  background-image: url("/home.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: 65% center;
 }
 
-/* Background Image */
-.home-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(60%);
+/* --------------------------------------------- */
+/*              DARK OVERLAY                     */
+/* Separate div so text stays full brightness    */
+/* --------------------------------------------- */
+.home-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.40);
+  z-index: 0;
 }
 
-/* Content Section */
+/* --------------------------------------------- */
+/*              CONTENT — vertically centered    */
+/* --------------------------------------------- */
 .home-content {
   position: absolute;
-  top: 20%;
+  z-index: 1;
+  top: 50%;
   left: 6%;
-  transform: translateY(-10%);
+  transform: translateY(-50%);
   color: white;
-  max-width: 450px;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 
-/* Welcome Text */
+/* --------------------------------------------- */
+/*              WELCOME TEXT                     */
+/* --------------------------------------------- */
 .welcome-text {
   font-size: 26px;
   font-weight: 300;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
+  margin: 0;
+  text-transform: uppercase;
 }
 
-/* Logo */
-.home-content img {
-  width: 250px;
+/* --------------------------------------------- */
+/*              LOGO                             */
+/* --------------------------------------------- */
+.home-logo {
+  width: 220px;
   height: auto;
-  margin-bottom: 10px;
+  display: block;
 }
 
-/* Button */
-.home-buttons button {
-  padding: 12px 28px;
-  font-size: 18px;
-  background: #d4a056;
-  border: none;
+/* --------------------------------------------- */
+/*              TAGLINE                          */
+/* --------------------------------------------- */
+.tagline {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: #d0d0d0;
+  margin: 0;
+}
+
+/* --------------------------------------------- */
+/*              EXPLORE BUTTON                   */
+/* --------------------------------------------- */
+.explore-link {
+  text-decoration: none;
+  width: fit-content!important;
+}
+
+.explore-btn-imp {
+  font-size: 16px;
+  background: #ffffff;
+  border: 2px solid #ffffff;
   border-radius: 8px;
-  color: #fff;
+  color: #000000;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.3s;
+  transition: background 0.3s, color 0.3s;
+  width: 180px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 }
 
-.home-buttons button:hover {
-  background: #b8843d;
-  transform: translateY(-2px);
+.explore-btn-imp:hover {
+  background-color: #000000;
+  color: #ffffff;
+  border-color: #ffffff;
 }
 
-/* -------------------------- */
-/* RESPONSIVE DESIGN          */
-/* -------------------------- */
-
-/* Tablets */
-@media (max-width: 992px) {
-  .home-content {
-    top: 25%;
-    left: 5%;
-    max-width: 360px;
+/* --------------------------------------------- */
+/*     RESPONSIVE — Tablet (≤900px)              */
+/*     Cup still visible, just shift slightly    */
+/* --------------------------------------------- */
+@media (max-width: 900px) {
+  .home-container {
+    background-position: 62% center;
   }
 
-  .home-content img {
-    width: 210px;
+  .home-content {
+    left: 5%;
+    max-width: 320px;
+    gap: 14px;
+  }
+
+  .home-logo {
+    width: 190px;
   }
 
   .welcome-text {
     font-size: 22px;
   }
 
-  .home-buttons button {
-    font-size: 16px;
-    padding: 10px 24px;
+  .tagline {
+    font-size: 13px;
+  }
+
+  .explore-btn-imp {
+    width: 165px;
+    height: 46px;
+    font-size: 15px;
   }
 }
 
-/* Mobile Devices */
+/* --------------------------------------------- */
+/*     RESPONSIVE — Mobile (≤600px)              */
+/*     Content top-left, cup bottom-right        */
+/*     Use top: 30% so BOTH are visible          */
+/* --------------------------------------------- */
 @media (max-width: 600px) {
-  .home-content {
-    top: 28%;
-    left: 5%;
-    max-width: 300px;
+  .home-container {
+    background-position: 70% 55%;
+    /* 70% horizontal keeps cup on right */
+    /* 55% vertical pulls cup slightly into view */
   }
 
-  .home-content img {
-    width: 180px;
+  .home-content {
+    top: 30%;           /* push content to upper third */
+    left: 4%;
+    transform: translateY(-50%);
+    max-width: 240px;
+    gap: 12px;
+  }
+
+  .home-logo {
+    width: 160px;
   }
 
   .welcome-text {
-    font-size: 20px;
+    font-size: 19px;
+    letter-spacing: 2px;
   }
 
-  .home-buttons button {
-    font-size: 16px;
-    padding: 10px 20px;
+  .tagline {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .explore-btn-imp {
+    width: 150px;
+    height: 44px;
+    font-size: 14px;
   }
 }
-.explore-btn-imp{
-  padding: 12px 28px!important;
-  font-size: 18px;
-  background: #ffffff;
-  border: none;
-  border-radius: 8px;
-  color: #000000;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-  width: 180px;
-  height: 50px;
+
+/* --------------------------------------------- */
+/*     RESPONSIVE — Small Mobile (≤400px)        */
+/* --------------------------------------------- */
+@media (max-width: 400px) {
+  .home-container {
+    background-position: 72% 58%;
+  }
+
+  .home-content {
+    top: 28%;
+    left: 4%;
+    max-width: 210px;
+    gap: 10px;
+  }
+
+  .home-logo {
+    width: 140px;
+  }
+
+  .welcome-text {
+    font-size: 17px;
+    letter-spacing: 1.5px;
+  }
+
+  .tagline {
+    font-size: 11px;
+  }
+
+  .explore-btn-imp {
+    width: 140px;
+    height: 42px;
+    font-size: 13px;
+  }
+}
+/* Desktop — current image, cup on right */
+.home-container {
+  background-image: url("/home.jpg");
+  background-position: 65% center;
 }
 
-.explore-btn-imp:hover{
-  background-color: #000000;
-  color: #ffffff;
-  border: 2px #ffffff solid;
+/* Tablet */
+@media (max-width: 900px) {
+  .home-container {
+    background-image: url("/home-tablet.jpg");
+    background-position: center center;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .home-container {
+    background-image: url("/home-mobile.jpg");
+    background-position: center center;
+    background-attachment: scroll;
+  }
 }

@@ -1,5 +1,5 @@
 import MenuPage from "./MenuPage";
-import { fetchMocktails } from "./store/MocktailsSlice";
+import { clearError, fetchMocktails } from "./store/MocktailsSlice";
 
 function Mocktails() {
 
@@ -8,6 +8,7 @@ function Mocktails() {
       title="Mocktails Menu"
       fetchAction={fetchMocktails}
       selector={(state) => state.mocktails}
+      clearErrorAction={clearError}
     />
   );
 

@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Toaster } from "sonner";
 
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -23,18 +22,28 @@ import Pastas from "./Pastas";
 import Registration from "./Registration";
 import Login from "./Login";
 import Profile from "./Profile";
+import LoginDialog from "./LoginDialog";
 
 function App() {
   return (
     <BrowserRouter>
-      
-      {/* Navbar component */}
       <Navbar />
 
-      {/* Toast notifications */}
-      <ToastContainer position="top-right" autoClose={2000} />
+      {/* Sonner toasts */}
+      <Toaster
+        position="top-center"
+        richColors
+        closeButton
+        duration={2000}
+        expand={true}
+        visibleToasts={3}
+        toastOptions={{
+          style: { marginTop: "0px" }
+        }}
+      />
+      {/* Global login dialog — controls itself via LoginSlice */}
+      <LoginDialog />
 
-      {/* Routes */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/menu" element={<Menu />} />
@@ -57,7 +66,6 @@ function App() {
         <Route path="/profile" element={<Profile />} />
       </Routes>
 
-      {/* Footer */}
       <Footer />
     </BrowserRouter>
   );

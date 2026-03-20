@@ -17,12 +17,27 @@ const mocktailsSlice = createSlice({
   name: "mocktails",
   initialState: { items: [], loading: false, error: null },
   reducers: {},
+    reducers: {
+    clearError: (state) => {
+      state.error = null; 
+    },
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchMocktails.pending, (state) => { state.loading = true; })
-      .addCase(fetchMocktails.fulfilled, (state, action) => { state.items = action.payload; state.loading = false; })
-      .addCase(fetchMocktails.rejected, (state, action) => { state.error = action.payload; state.loading = false; });
+      .addCase(fetchMocktails.pending, (state) => {
+        state.loading = true;
+        state.error = null; // ← clears error when retry starts
+      })
+      .addCase(fetchMocktails.fulfilled, (state, action) => {
+        state.items = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchMocktails.rejected, (state, action) => {
+        state.error = action.payload;
+        state.loading = false;
+      });
   }
 });
 
+export const { clearError } = mocktailsSlice.actions; // ← export it
 export default mocktailsSlice.reducer;

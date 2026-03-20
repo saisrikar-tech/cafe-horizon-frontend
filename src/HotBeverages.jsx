@@ -1,5 +1,5 @@
 import MenuPage from "./MenuPage";
-import { fetchHotBeverages } from "./store/HotBeveragesSlice";
+import {  clearError, fetchHotBeverages, } from "./store/HotBeveragesSlice";
 
 function HotBeverages() {
 
@@ -8,6 +8,7 @@ function HotBeverages() {
       title="Hot Beverages"
       fetchAction={fetchHotBeverages}
       selector={(state) => state.hotBeverages}
+      clearErrorAction={clearError}
     />
   );
 

@@ -1,0 +1,47 @@
+/* --------------------------------------------- */
+/*           SHIMMER ANIMATION                   */
+/* --------------------------------------------- */
+@keyframes shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position:  600px 0; }
+}
+
+.sk {
+  background: linear-gradient(
+    90deg,
+    #e8e8e8 25%,
+    #f5f5f5 50%,
+    #e8e8e8 75%
+  );
+  background-size: 600px 100%;
+  animation: shimmer 1.4s infinite linear;
+  border-radius: 6px;
+}
+
+/* --------------------------------------------- */
+/*           SKELETON CARD                       */
+/* --------------------------------------------- */
+.skeleton-card {
+  background: #ffffff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.sk-image {
+  height: 180px;
+  width: 100%;
+  border-radius: 0;
+}
+
+.sk-body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sk-title    { height: 16px; width: 65%; }
+.sk-subtitle { height: 12px; width: 80%; }
+.sk-price    { height: 14px; width: 30%; }
+.sk-btn      { height: 36px; width: 100%; border-radius: 8px; margin-top: 4px; }
