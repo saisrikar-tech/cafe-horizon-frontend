@@ -107,3 +107,36 @@
 .order-items-list li span {
   font-weight: normal !important;
 }
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.order-summary {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed #ddd;
+  font-size: 14px;
+}
+
+.order-summary p {
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 0;
+  color: #555;
+}
+
+.order-total {
+  font-weight: 700;
+  font-size: 15px;
+  color: #0f172a !important;
+  margin-top: 6px !important;
+}
+
+.no-orders {
+  text-align: center;
+  color: #888;
+  padding: 40px;
+}
